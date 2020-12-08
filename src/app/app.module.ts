@@ -10,6 +10,7 @@ import { PeppersComponent } from './components/peppers/peppers.component';
 import { RamblingsComponent } from './components/ramblings/ramblings.component';
 import { LoginComponent } from './components/login/login.component';
 import { P404Component } from './components/p404/p404.component';
+import { PeppersListComponent } from './components/peppers-list/peppers-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { P404Component } from './components/p404/p404.component';
     PeppersComponent,
     RamblingsComponent,
     LoginComponent,
-    P404Component
+    P404Component,
+    PeppersListComponent
   ],
   imports: [
     BrowserModule,

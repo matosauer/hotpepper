@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let hotpepper of hotpeppers$ | async">
+        <a [routerLink]="['/ramblings', hotpepper.id]">{{ hotpepper.title }}</a>
+    </li>
+</ul>

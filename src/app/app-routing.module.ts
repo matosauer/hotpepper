@@ -8,12 +8,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
-  {path:'', redirectTo: '/home', pathMatch: 'full'},
-  
   {path:'peppers', component: PeppersComponent},
   {path:'ramblings', component: RamblingsComponent},
+  {path:'ramblings/:id', component: RamblingsComponent},
   {path:'login', component: LoginComponent},
-
+  {path:'', component: HomeComponent, pathMatch: 'full'},
+  
   {path: '404', component: P404Component},
   {path: '**', redirectTo: '/404'}
 
