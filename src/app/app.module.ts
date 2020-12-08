@@ -7,10 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PeppersComponent } from './components/peppers/peppers.component';
-import { RamblingsComponent } from './components/ramblings/ramblings.component';
 import { LoginComponent } from './components/login/login.component';
 import { P404Component } from './components/p404/p404.component';
-import { PeppersListComponent } from './components/peppers-list/peppers-list.component';
+import { PepperDetailsComponent } from './components/pepper-details/pepper-details.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +17,9 @@ import { PeppersListComponent } from './components/peppers-list/peppers-list.com
     NavbarComponent,
     HomeComponent,
     PeppersComponent,
-    RamblingsComponent,
     LoginComponent,
     P404Component,
-    PeppersListComponent
+    PepperDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,5 @@
-<app-peppers-list></app-peppers-list>
+<ul>
+    <li *ngFor="let hotpepper of hotpeppers$ | async">
+        <a [routerLink]="['/pepper', hotpepper.id]">{{ hotpepper.title }}</a>
+    </li>
+</ul>

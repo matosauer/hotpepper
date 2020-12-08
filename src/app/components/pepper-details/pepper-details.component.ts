@@ -4,14 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-ramblings',
-  templateUrl: './ramblings.component.html',
-  styleUrls: ['./ramblings.component.css']
+  selector: 'app-pepper-details',
+  templateUrl: './pepper-details.component.html',
+  styleUrls: ['./pepper-details.component.css']
 })
-export class RamblingsComponent implements OnInit {
+export class PepperDetailsComponent implements OnInit {
 
   hotpepper: HotPepper;
-  id:string;
+  id: string;
 
   constructor(private activatedroute: ActivatedRoute,
               private router:Router,
