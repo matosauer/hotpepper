@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pandaproj-d4f52": {
+      "hosting": {
+        "hotpepper": [
+          "pandaproj-d4f52"
+        ]
+      }
+    }
+  }
+}
