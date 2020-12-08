@@ -19,15 +19,13 @@ export class PepperDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedroute.paramMap.subscribe(params => { 
-        console.log(params);
         this.id = params.get('id'); 
 
         if(this.id != null){
           this.hotpepper = this.service.getPepper(this.id);
-
-          console.log(this.hotpepper);
+        }else{
+          this.hotpepper =  new HotPepper();
         }
    });
   }
-
 }

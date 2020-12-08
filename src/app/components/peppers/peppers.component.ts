@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PeppersComponent implements OnInit {
 
-  private hotpeppers$: Observable<HotPepper[]>;
+  hotpeppers$: Observable<HotPepper[]>;
 
   constructor(
       private service: HotPepperService,

@@ -1,5 +1,13 @@
-<ul>
-    <li *ngFor="let hotpepper of hotpeppers$ | async">
-        <a [routerLink]="['/pepper', hotpepper.id]">{{ hotpepper.title }}</a>
-    </li>
-</ul>
+<div class="row">
+
+  <div class="col-md-4" *ngFor="let hotpepper of hotpeppers$ | async">
+    <div class="card mb-4 shadow-sm" style="width: 18rem;">
+      <img src="{{ hotpepper.image }}" class="card-img-top" alt="{{ hotpepper.title }}">
+      <div class="card-body">
+        <h5 class="card-title"><a [routerLink]="['/pepper', hotpepper.id]">{{ hotpepper.title }}</a></h5>
+        <p class="card-text">{{ hotpepper.description }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
