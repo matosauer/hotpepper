@@ -2,6 +2,7 @@ import { HotPepperService } from './../../services/hot-pepper.service';
 import { HotPepper } from './../../models/hotpepper';
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-pepper-details',
@@ -10,7 +11,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class PepperDetailsComponent implements OnInit {
 
-  hotpepper: HotPepper;
+  hotpepper : any; //Observable<HotPepper>;
   id: string;
 
   constructor(private activatedroute: ActivatedRoute,
@@ -22,9 +23,10 @@ export class PepperDetailsComponent implements OnInit {
         this.id = params.get('id'); 
 
         if(this.id != null){
+          console.log("loading " + this.id);
           this.hotpepper = this.service.getPepper(this.id);
         }else{
-          this.hotpepper =  new HotPepper();
+          this.hotpepper =  of(new HotPepper());
         }
    });
   }

@@ -10,6 +10,9 @@ import { PeppersComponent } from './components/peppers/peppers.component';
 import { LoginComponent } from './components/login/login.component';
 import { P404Component } from './components/p404/p404.component';
 import { PepperDetailsComponent } from './components/pepper-details/pepper-details.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { PepperDetailsComponent } from './components/pepper-details/pepper-detai
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
