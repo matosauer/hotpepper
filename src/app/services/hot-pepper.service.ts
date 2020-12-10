@@ -22,24 +22,11 @@ export class HotPepperService {
       );
   }
 
-  getPepper(id: string) {
-
-    return this.db.collection<HotPepper>('hotpeppers').doc(id);
-
-    /*
+  getPepper(id: string) : Observable<HotPepper> {
     return this.db.collection<HotPepper>('hotpeppers').doc(id)
-        .snapshotChanges().pipe(
-          map( a => {
-            const data = a.payload.data() as HotPepper;
-            const id = a.payload.id;
-
-            
-            console.log(data);
-
-            return { id, ...data };
-          })
-        );
-    */
-   
-    }
+      .get()
+      .pipe(
+        map(doc => doc.data() as HotPepper)
+      );
+  }
 }

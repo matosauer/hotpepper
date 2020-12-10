@@ -11,8 +11,8 @@ import { Observable, of } from 'rxjs';
 })
 export class PepperDetailsComponent implements OnInit {
 
-  hotpepper : any; //Observable<HotPepper>;
-  id: string;
+  public hotpepper : HotPepper;
+  id?: string;
 
   constructor(private activatedroute: ActivatedRoute,
               private router:Router,
@@ -20,14 +20,18 @@ export class PepperDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedroute.paramMap.subscribe(params => { 
-        this.id = params.get('id'); 
-
+        this.id = params.get('id');
+        
         if(this.id != null){
-          console.log("loading " + this.id);
-          this.hotpepper = this.service.getPepper(this.id);
-        }else{
-          this.hotpepper =  of(new HotPepper());
+
+          this.service.getPepper(this.id)
+            .subscribe(value => 
+              {
+                this.hotpepper = value;
+              });
+          }
         }
-   });
+
+   );
   }
 }
