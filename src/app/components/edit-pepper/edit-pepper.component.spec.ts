@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PepperDetailsComponent } from './pepper-details.component';
+import { EditPepperComponent } from './edit-pepper.component';
 
-describe('PepperDetailsComponent', () => {
-  let component: PepperDetailsComponent;
-  let fixture: ComponentFixture<PepperDetailsComponent>;
+describe('EditPepperComponent', () => {
+  let component: EditPepperComponent;
+  let fixture: ComponentFixture<EditPepperComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PepperDetailsComponent ]
+      declarations: [ EditPepperComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PepperDetailsComponent);
+    fixture = TestBed.createComponent(EditPepperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

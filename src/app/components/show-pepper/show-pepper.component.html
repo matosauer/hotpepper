@@ -1,0 +1,13 @@
+<div *ngIf="hotpepper">
+    <p>
+        <img src="{{ hotpepper.image }}" alt="{{ hotpepper.title }}">
+    </p>
+    <p>
+      {{ hotpepper.title }}
+    </p>
+    <p>
+      {{ hotpepper.description }}
+    </p>
+    <button type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
+    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+</div>

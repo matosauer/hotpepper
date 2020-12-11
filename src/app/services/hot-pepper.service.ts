@@ -13,7 +13,8 @@ export class HotPepperService {
   constructor(private db: AngularFirestore) { }
 
   getPeppers(): Observable<HotPepper[]>{
-    return this.db.collection<HotPepper>('hotpeppers').snapshotChanges().pipe(
+    return this.db.collection<HotPepper>('hotpeppers').snapshotChanges()
+      .pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as HotPepper;
           const id = a.payload.doc.id;
@@ -26,7 +27,32 @@ export class HotPepperService {
     return this.db.collection<HotPepper>('hotpeppers').doc(id)
       .get()
       .pipe(
-        map(doc => doc.data() as HotPepper)
+          map( d => {
+            return { id, ...d.data() }
+          }
+        )
       );
+  }
+
+  updatePepper(pepper: HotPepper){
+    return this.db.collection<HotPepper>('hotpeppers').doc(pepper.id)
+            .update({
+              title: pepper.title,
+              description: pepper.description,
+              image: pepper.image
+            });
+  }
+
+  addPepper(pepper: HotPepper){
+    return this.db.collection('hotpeppers')
+            .add({
+              title: pepper.title,
+              description: pepper.description,
+              image: pepper.image
+            });
+  }
+
+  deletePepper(id: string){
+    return this.db.collection('hotpeppers').doc(id).delete();
   }
 }

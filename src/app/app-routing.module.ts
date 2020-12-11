@@ -1,4 +1,5 @@
-import { PepperDetailsComponent } from './components/pepper-details/pepper-details.component';
+import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
+import { EditPepperComponent } from './components/edit-pepper/edit-pepper.component';
 import { LoginComponent } from './components/login/login.component';
 import { PeppersComponent } from './components/peppers/peppers.component';
 import { P404Component } from './components/p404/p404.component';
@@ -9,8 +10,10 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'peppers', component: PeppersComponent},
-  {path:'pepper', component: PepperDetailsComponent},
-  {path:'pepper/:id', component: PepperDetailsComponent},
+  {path:'pepper/:id', component: ShowPepperComponent},
+  {path:'edit/pepper/:id', component: EditPepperComponent},
+  {path:'new/pepper', component: EditPepperComponent},
+
   {path:'login', component: LoginComponent},
   {path:'', component: HomeComponent, pathMatch: 'full'},
   

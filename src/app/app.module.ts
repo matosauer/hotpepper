@@ -9,10 +9,15 @@ import { HomeComponent } from './components/home/home.component';
 import { PeppersComponent } from './components/peppers/peppers.component';
 import { LoginComponent } from './components/login/login.component';
 import { P404Component } from './components/p404/p404.component';
-import { PepperDetailsComponent } from './components/pepper-details/pepper-details.component';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+
+// Reactive Form Module
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditPepperComponent } from './components/edit-pepper/edit-pepper.component';
+import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +27,16 @@ import { environment } from 'src/environments/environment';
     PeppersComponent,
     LoginComponent,
     P404Component,
-    PepperDetailsComponent
+    EditPepperComponent,
+    ShowPepperComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
