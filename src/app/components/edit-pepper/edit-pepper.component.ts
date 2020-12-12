@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { HotPepperService } from './../../services/hot-pepper.service';
@@ -11,10 +11,12 @@ import { HotPepper } from './../../models/hotpepper';
   styleUrls: ['./edit-pepper.component.css']
 })
 export class EditPepperComponent implements OnInit {
-
+  
   id:string;
   editForm: FormGroup;
-  oldimage:string;
+  title: FormControl;
+  description: FormControl;
+  image: FormControl;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,16 +25,19 @@ export class EditPepperComponent implements OnInit {
 
     ngOnInit(): void {
       this.id  = this.activatedRoute.snapshot.paramMap.get("id");
+
+      this.title = new FormControl("", [Validators.required]);
+      this.description = new FormControl("", [Validators.required]);
+      this.image = new FormControl("", [Validators.required]);
+
+      this.editForm = new FormGroup({
+        'title': this.title,
+        'description': this.description,
+        'image': this.image
+      });
+
       if (this.id != null){
         this.loadPepper();
-      }else{
-
-        this.editForm = new FormGroup({
-            title: new FormControl(""),
-            description: new FormControl(""),
-            image: new FormControl("")
-        });
-
       }
     }
 
@@ -74,13 +79,9 @@ export class EditPepperComponent implements OnInit {
       this.service.getPepper(this.id)
           .subscribe(value => 
             {
-              this.editForm = new FormGroup({
-                  title: new FormControl(value.title),
-                  description: new FormControl(value.description),
-                  image: new FormControl(value.image)
-                });
-
-              this.oldimage = value.image;
+              this.editForm.controls.title.setValue(value.title);
+              this.editForm.controls.description.setValue(value.description);
+              this.editForm.controls.image.setValue(value.image);
             });
     }
 }
