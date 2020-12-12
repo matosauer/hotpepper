@@ -12,12 +12,15 @@ import { P404Component } from './components/p404/p404.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditPepperComponent } from './components/edit-pepper/edit-pepper.component';
 import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
+
+import { AuthService } from './services/auth.service'
 
 @NgModule({
   declarations: [
@@ -34,11 +37,14 @@ import { ShowPepperComponent } from './components/show-pepper/show-pepper.compon
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
+
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

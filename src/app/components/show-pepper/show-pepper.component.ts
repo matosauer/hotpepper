@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotPepper } from 'src/app/models/hotpepper';
+import { AuthService } from 'src/app/services/auth.service';
 import { HotPepperService } from 'src/app/services/hot-pepper.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class ShowPepperComponent implements OnInit {
   constructor(
         private activatedRoute: ActivatedRoute,
         private router:Router,
-        private service:HotPepperService
+        private service:HotPepperService,
+        private authService: AuthService
       ) { }
 
   ngOnInit(): void {

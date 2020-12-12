@@ -8,6 +8,6 @@
     <p>
       {{ hotpepper.description }}
     </p>
-    <button type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
-    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+    <button *ngIf="authService.user | async" type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
+    <button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
 </div>

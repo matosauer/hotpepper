@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HotPepperService } from './../../services/hot-pepper.service';
 import { HotPepper } from './../../models/hotpepper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-peppers',
@@ -16,7 +17,8 @@ export class PeppersComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router:Router,
-    private service:HotPepperService) { }
+    private service:HotPepperService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.hotpeppers$ = this.service.getPeppers();

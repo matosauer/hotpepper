@@ -1,27 +1,33 @@
-# Hotpepper
+<div class="row">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+    <div>
+        <!-- this header tag displays only when user is logged-in -->
+        <h1 *ngIf="authService.user | async">
+	        Welcome User: {{ (authService.user | async)?.email }}!
+        </h1>
 
-## Development server
+		<!-- this div displays only when user is not-logged-in -->
+	    <div *ngIf="!(authService.user | async)">
+            <!-- these input fields takes email and password from user -->
+            <input type="text" [(ngModel)]="email" placeholder="Enter email"/>
+            <input type="password" [(ngModel)]="password" placeholder="Enter password"/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+            <!-- user click this button to signup -->
+            <button (click)="signup()" [disabled]="!email || !password">
+            	Signup
+            </button>
 
-## Code scaffolding
+            <!-- user click this button to login -->
+            <button (click)="login()" [disabled]="!email || !password">
+            	Login
+            </button>
+	    </div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+        <!-- user click this button to logout -->
+        <!-- this button displays only when user is logged-in -->
+        <button (click)="logout()" *ngIf="authService.user | async">
+        	Logout
+        </button>
+    </div>
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+</div>
