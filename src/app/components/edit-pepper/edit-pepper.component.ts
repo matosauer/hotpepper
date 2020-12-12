@@ -13,7 +13,6 @@ import { HotPepper } from './../../models/hotpepper';
 export class EditPepperComponent implements OnInit {
 
   id:string;
-  // isNew: boolean = true;
   editForm: FormGroup;
   oldimage:string;
 
@@ -48,36 +47,27 @@ export class EditPepperComponent implements OnInit {
       if (pepper.id != null){
 
         this.service.updatePepper(pepper)
-        .then(
-          o => (
-            this.router.navigate(['/pepper/', this.id])
-          )
+        .then( 
+          o => (this.router.navigate(['/peppers/', this.id]))
         ),
-        err => {
-          console.log(err);
-        }
+        err => {console.log(err);}
 
       }else{
 
         this.service.addPepper(pepper)
-        .then(
-          o => (
-            console.log(o.id)
-            //this.router.navigate(['/pepper/', o.id])
-          )
+        .then( 
+          o => ( this.router.navigate(['/peppers/', o.id]))
         ),
-        err => {
-          console.log(err);
-        }
-
-        //todo: use await update operation before navigation
-        this.router.navigate(['/peppers/']);
+        err => {console.log(err);}
 
       }
     }
   
     onCancel() {
-      this.router.navigate(['/pepper/', this.id]);
+      let path : string[] = ['/peppers'];
+      if (this.id != null) path.push(this.id);
+
+      this.router.navigate(path);
     }
  
     loadPepper(){
@@ -90,24 +80,7 @@ export class EditPepperComponent implements OnInit {
                   image: new FormControl(value.image)
                 });
 
-              // this.isNew = false;
               this.oldimage = value.image;
             });
     }
- 
-    /*   
-     delete(){
-      this.service.deletePepper(this.hotpepper.id)
-      .then(
-        res => {
-          this.router.navigate(['/peppers']);
-        },
-        err => {
-          console.log(err);
-        }
-      )
-      }
-*/ 
-  
 }
-

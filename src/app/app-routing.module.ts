@@ -9,10 +9,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
+  
   {path:'peppers', component: PeppersComponent},
-  {path:'pepper/:id', component: ShowPepperComponent},
+  {path:'peppers/:id', component: ShowPepperComponent},
+  
+  {path:'edit/pepper', component: EditPepperComponent},
   {path:'edit/pepper/:id', component: EditPepperComponent},
-  {path:'new/pepper', component: EditPepperComponent},
 
   {path:'login', component: LoginComponent},
   {path:'', component: HomeComponent, pathMatch: 'full'},
