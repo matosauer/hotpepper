@@ -16,17 +16,17 @@ export class AuthService {
     this.user = firebaseAuth.authState;
   }
 
-  signup(email: string, password: string) {
+  signup(email: string, password: string): Promise<any> {
     return this.firebaseAuth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password);
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Promise<any> {
     return this.firebaseAuth
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password);
   }
 
-  logout() {
+  logout(): Promise<any> {
     return this.firebaseAuth.signOut();
   }
 }

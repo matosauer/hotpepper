@@ -1,3 +1,4 @@
+import { RegisterComponent } from './components/register/register.component';
 import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
 import { EditPepperComponent } from './components/edit-pepper/edit-pepper.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,7 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 // https://github.com/angular/angularfire/blob/master/docs/auth/router-guards.md
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
@@ -21,7 +22,9 @@ const routes: Routes = [
   {path:'edit/pepper', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   {path:'edit/pepper/:id', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
 
-  {path:'login', component: LoginComponent},
+  {path:'user/login', component: LoginComponent},
+  {path:'user/register', component: RegisterComponent},
+
   {path:'', component: HomeComponent, pathMatch: 'full'},
   
   {path: '404', component: P404Component},

@@ -20,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditPepperComponent } from './components/edit-pepper/edit-pepper.component';
 import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
 
-import { AuthService } from './services/auth.service'
+import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './components/register/register.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthService } from './services/auth.service'
     LoginComponent,
     P404Component,
     EditPepperComponent,
-    ShowPepperComponent
+    ShowPepperComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
