@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   email: FormControl;
   password: FormControl;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -30,12 +30,21 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.authService.login(this.email.value, this.password.value);
-    this.loginForm.reset();
+    this.authService.login(this.email.value, this.password.value)
+      .then(value => {
+        this.loginForm.reset();
+      })
+      .catch(err => {
+        this.errorMessage = "Invalid email and or password!";
+        console.log('Something went wrong:',err.message);
+      });
   }
 
   logout(){
-    this.authService.logout();
+    this.authService.logout()
+    .catch(err => {
+      this.errorMessage = "Something went wrong";
+      console.log('Something went wrong:',err.message);
+    });
   }
-
 }

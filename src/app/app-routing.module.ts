@@ -4,8 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { PeppersComponent } from './components/peppers/peppers.component';
 import { P404Component } from './components/p404/p404.component';
 import { HomeComponent } from './components/home/home.component';
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+// https://github.com/angular/angularfire/blob/master/docs/auth/router-guards.md
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
@@ -13,15 +18,14 @@ const routes: Routes = [
   {path:'peppers', component: PeppersComponent},
   {path:'peppers/:id', component: ShowPepperComponent},
   
-  {path:'edit/pepper', component: EditPepperComponent},
-  {path:'edit/pepper/:id', component: EditPepperComponent},
+  {path:'edit/pepper', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  {path:'edit/pepper/:id', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
 
   {path:'login', component: LoginComponent},
   {path:'', component: HomeComponent, pathMatch: 'full'},
   
   {path: '404', component: P404Component},
   {path: '**', redirectTo: '/404'}
-
 ];
 
 @NgModule({

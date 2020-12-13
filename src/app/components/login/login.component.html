@@ -1,6 +1,5 @@
 <div class="row">
 
-    <!-- this header tag displays only when user is logged-in -->
     <div *ngIf="authService.user | async">
         <h3>Welcome</h3>
         <p>
@@ -9,17 +8,14 @@
         <button (click)="logout()" *ngIf="authService.user | async" class="btn btn-primary">Logout</button>
     </div>
 
-    <!-- this div displays only when user is not-logged-in -->
     <div *ngIf="!(authService.user | async)">
         
         <h2>Login</h2>
 
         <form [formGroup]="loginForm">
-
-            <div>
-                <label class="error">{{errorMessage}}</label>
-                <label class="success">{{successMessage}}</label>
-            </div>
+            
+            <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+            <div *ngIf="successMessage" class="alert alert-info" role="alert">{{successMessage}}</div>
 
             <div class="form-group">
               <label>Email address</label>

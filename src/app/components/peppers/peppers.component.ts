@@ -18,7 +18,7 @@ export class PeppersComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router:Router,
     private service:HotPepperService,
-    private authService: AuthService) { }
+    public authService: AuthService) { }
 
   ngOnInit(): void {
     this.hotpeppers$ = this.service.getPeppers();
