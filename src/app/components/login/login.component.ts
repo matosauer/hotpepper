@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
 
   logout(){
     this.authService.logout()
+    // .then(value => {
+    //   this.loginForm.reset();
+    // })
     .catch(err => {
       this.errorMessage = "Something went wrong";
       console.log('Something went wrong:',err.message);

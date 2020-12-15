@@ -1,11 +1,16 @@
 <div class="row">
 
+    <h1>{{ (authService.user | async)?.role }}</h1>
+
+
     <div *ngIf="authService.user | async">
+        
         <h3>Welcome</h3>
         <p>
             {{ (authService.user | async)?.email }}
         </p>
         <button (click)="logout()" *ngIf="authService.user | async" class="btn btn-primary">Logout</button>
+        
     </div>
 
     <div *ngIf="!(authService.user | async)">

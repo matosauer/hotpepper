@@ -21,7 +21,8 @@ import { EditPepperComponent } from './components/edit-pepper/edit-pepper.compon
 import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
 
 import { AuthService } from './services/auth.service';
-import { RegisterComponent } from './components/register/register.component'
+import { RegisterComponent } from './components/register/register.component';
+
 
 @NgModule({
   declarations: [
