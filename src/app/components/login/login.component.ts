@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { map } from 'rxjs/operators';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,12 +29,25 @@ export class LoginComponent implements OnInit {
       'email': this.email,
       'password': this.password
     });
+
+    // const editorOnly = () => pipe(this.authService.user, map(claims => claims.role === 'editor'));
+
+    // const editorOnly = () => pipe(this.authService.user => {map(claims => claims.role === 'editor')});
+
+    const adminOnly = () => { return (this.authService.userDetails?.role === 'admin') };
+
+    console.log("login admin only = " + adminOnly());
+    console.log("login role = " + this.authService.userDetails?.role );
+    console.log("login isLoggedIn = " + this.authService.isLoggedIn() );
+    // console.log("role = " + (this.authService.user | async)?.role );
+
   }
 
   login(): void {
     this.authService.login(this.email.value, this.password.value)
       .then(value => {
         this.loginForm.reset();
+        console.log("login user details: " + this.authService.userDetails);
       })
       .catch(err => {
         this.errorMessage = "Invalid email and or password!";
@@ -42,9 +57,10 @@ export class LoginComponent implements OnInit {
 
   logout(){
     this.authService.logout()
-    // .then(value => {
+    .then(value => {
+      console.log(this.authService.userDetails);
     //   this.loginForm.reset();
-    // })
+    })
     .catch(err => {
       this.errorMessage = "Something went wrong";
       console.log('Something went wrong:',err.message);
