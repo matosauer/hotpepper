@@ -30,17 +30,8 @@ export class LoginComponent implements OnInit {
       'password': this.password
     });
 
-    // const editorOnly = () => pipe(this.authService.user, map(claims => claims.role === 'editor'));
-
-    // const editorOnly = () => pipe(this.authService.user => {map(claims => claims.role === 'editor')});
-
-    const adminOnly = () => { return (this.authService.userDetails?.role === 'admin') };
-
-    console.log("login admin only = " + adminOnly());
-    console.log("login role = " + this.authService.userDetails?.role );
-    console.log("login isLoggedIn = " + this.authService.isLoggedIn() );
-    // console.log("role = " + (this.authService.user | async)?.role );
-
+    console.log("is admin = " + this.authService.isInRole('admin'));
+    console.log("is logged in = " + this.authService.isLoggedIn());
   }
 
   login(): void {
@@ -58,8 +49,7 @@ export class LoginComponent implements OnInit {
   logout(){
     this.authService.logout()
     .then(value => {
-      console.log(this.authService.userDetails);
-    //   this.loginForm.reset();
+      this.loginForm.reset();
     })
     .catch(err => {
       this.errorMessage = "Something went wrong";

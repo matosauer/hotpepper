@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-
 import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable, of, Subscriber } from 'rxjs';
@@ -10,43 +9,43 @@ import { switchMap } from 'rxjs/operators';
 
 import { User } from '../models/user';
 
-//https://firebase.google.com/docs/auth/web/password-auth
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private user: Observable<User>;
+  user: Observable<User>;
   userDetails: User = null;
 
   constructor(private firebaseAuth: AngularFireAuth,
               private db: AngularFirestore) { 
+      
+      //firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(_ => {
 
+        firebaseAuth.onAuthStateChanged(user => {
+            if (user) {
+              this.user = this.getDetails(user);
+              this.user.subscribe((userDetails) => {
+                this.userDetails = userDetails;
+              })
+            }
+          }
+        )
+
+    //})
+
+    /*
     firebaseAuth.authState.subscribe((user) => {
           if (user) {
-            this.user = this.getUserDetails( user );
-          } else {
-            this.userDetails = null;
+            this.user = this.getDetails(user);
+            this.user.subscribe((user) => {
+              this.userDetails = user;
+            })
           }
         }
       );
+      */
   }
-
-  /*
-  initUser(){
-    this.user = this.firebaseAuth.authState
-          .pipe(
-            switchMap((user) => {
-              if (user) {
-                return this.getUserDetails( user );
-              } else {
-                return of(null)
-              }
-            })
-          );
-  }
-  */
 
   signup(email: string, password: string): Promise<any> {
     return this.firebaseAuth
@@ -55,18 +54,22 @@ export class AuthService {
 
   login(email: string, password: string): Promise<any> {
       return this.firebaseAuth
-            .signInWithEmailAndPassword(email, password)
-            .then((credential) => {
-                return this.getUserDetails( credential.user );
-            });
+          .signInWithEmailAndPassword(email, password);
   }
 
-  private getUserDetails(user : firebase.User) : Observable<User>{
+  logout(): Promise<any> {
+    return this.firebaseAuth.signOut()
+          .then( d => {
+            this.user = of(null);
+            }
+          );
+  }
+
+  private getDetails(user : firebase.User) : Observable<User>{
     return this.db.collection('users').doc<User>(user.uid)
           .get()
           .pipe(
             map((d) => {
-                    console.log("getUserDetails() invoked");
                     return {
                       id: user.uid,
                       email: user.email,
@@ -77,21 +80,9 @@ export class AuthService {
             );
   }
 
-  logout(): Promise<any> {
-    return this.firebaseAuth.signOut();
-          // .then( d => {
-          //   this.userDetails = null;
-          //   }
-          // );
-  }
-
   isLoggedIn() {
-    if (this.userDetails == null ) {
-        return false;
-      } else {
-        return true;
-      }
-    }
+    return (this.userDetails != null);
+  }
 
   isInRole(role) : boolean{
     return (this.userDetails?.role === role);

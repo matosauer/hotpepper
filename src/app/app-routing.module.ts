@@ -10,8 +10,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
+//import { AuthGuard } from './services/auth.service';
+
 // https://github.com/angular/angularfire/blob/master/docs/auth/router-guards.md
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
+//const redirectIfNotAdmin = () => redirectUnauthorizedTo(['user/login']);
+// const adminOnly = () => hasCustomClaim('admin');
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
@@ -35,4 +39,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+
+}
