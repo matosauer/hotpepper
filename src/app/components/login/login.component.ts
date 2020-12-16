@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   email: FormControl;
   password: FormControl;
+  
 
   constructor(public authService: AuthService) { }
 
@@ -30,8 +31,8 @@ export class LoginComponent implements OnInit {
       'password': this.password
     });
 
-    console.log("is admin = " + this.authService.isInRole('admin'));
-    console.log("is logged in = " + this.authService.isLoggedIn());
+    // console.log("is admin = " + this.authService.isInRole('admin'));
+    // console.log("is logged in = " + this.authService.isLoggedIn());
   }
 
   login(): void {

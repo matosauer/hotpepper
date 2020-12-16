@@ -47,9 +47,14 @@ export class AuthService {
       */
   }
 
-  signup(email: string, password: string): Promise<any> {
+  signup(email: string, password: string, name: string): Promise<any> {
     return this.firebaseAuth
-          .createUserWithEmailAndPassword(email, password);
+          .createUserWithEmailAndPassword(email, password)
+          .then( u => {
+            return this.db.collection('users')
+                .doc(u.user.uid)
+                .set({role:"user", name: name});
+          });
   }
 
   login(email: string, password: string): Promise<any> {
