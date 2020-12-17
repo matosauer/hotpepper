@@ -13,23 +13,25 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PeppersComponent implements OnInit {
 
   hotpeppers$: Observable<HotPepper[]>;
+  isAdmin$: Observable<boolean>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router:Router,
     private service:HotPepperService,
-    public authService: AuthService) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.hotpeppers$ = this.service.getPeppers();
+    this.isAdmin$ = this.authService.isAdmin()
   }
 
   onAddNew(){
-    this.router.navigate(['/edit/pepper/']);
+    this.router.navigate(['/edit/peppers/']);
   }
 
   onEdit(id:string){
-    this.router.navigate(['/edit/pepper/', id]);
+    this.router.navigate(['/edit/peppers/', id]);
   }
 
   onDelete(id:string){

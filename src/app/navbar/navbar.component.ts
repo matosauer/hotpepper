@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,12 +11,14 @@ import { AuthService } from '../services/auth.service';
 export class NavbarComponent implements OnInit {
 
   toggleNavbar = true;
+  isLoggedIn$: Observable<boolean>;
+  user$: Observable<User>;
   
-  constructor(public authService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    console.log("NAV BAR role = " + this.authService.userDetails?.role );
-    console.log("NAV BAR isLoggedIn = " + this.authService.isLoggedIn() );
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.user$ = this.authService.user;
   }
 
   logout(){

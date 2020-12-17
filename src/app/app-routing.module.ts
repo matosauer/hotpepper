@@ -9,13 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AdminGuardService } from './services/admin-guard.service';
 
-//import { AuthGuard } from './services/auth.service';
 
-// https://github.com/angular/angularfire/blob/master/docs/auth/router-guards.md
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
-//const redirectIfNotAdmin = () => redirectUnauthorizedTo(['user/login']);
-// const adminOnly = () => hasCustomClaim('admin');
+// const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
@@ -23,8 +20,11 @@ const routes: Routes = [
   {path:'peppers', component: PeppersComponent},
   {path:'peppers/:id', component: ShowPepperComponent},
   
-  {path:'edit/pepper', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
-  {path:'edit/pepper/:id', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  // {path:'edit/pepper', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  // {path:'edit/pepper/:id', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+
+  {path:'edit/peppers', component: EditPepperComponent, canActivate: [AdminGuardService]},
+  {path:'edit/peppers/:id', component: EditPepperComponent, canActivate: [AdminGuardService]},
 
   {path:'user/login', component: LoginComponent},
   {path:'user/register', component: RegisterComponent},

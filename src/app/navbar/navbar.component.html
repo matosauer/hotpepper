@@ -21,12 +21,12 @@
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
 
-          <ng-container *ngIf="!(authService.user | async); else usertmpl">
+          <ng-container *ngIf="!(isLoggedIn$ | async); else usertmpl">
             <a class="nav-link" routerLink='/user/login' routerLinkActive="active">Login</a>
           </ng-container>
 
           <ng-template #usertmpl>
-            <span class="text-white">{{ (authService.user | async)?.name }}</span>
+            <span class="text-white">{{ (user$ | async)?.name }}</span>
             <a style="cursor: pointer;" class="nav-link" (click)="logout()">Logout</a>
           </ng-template>
          

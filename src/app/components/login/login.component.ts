@@ -31,15 +31,12 @@ export class LoginComponent implements OnInit {
       'password': this.password
     });
 
-    // console.log("is admin = " + this.authService.isInRole('admin'));
-    // console.log("is logged in = " + this.authService.isLoggedIn());
   }
 
   login(): void {
     this.authService.login(this.email.value, this.password.value)
       .then(value => {
         this.loginForm.reset();
-        console.log("login user details: " + this.authService.userDetails);
       })
       .catch(err => {
         this.errorMessage = "Invalid email and or password!";

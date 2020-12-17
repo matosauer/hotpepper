@@ -22,7 +22,7 @@ import { ShowPepperComponent } from './components/show-pepper/show-pepper.compon
 
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
-
+import { AdminGuardService } from './services/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { RegisterComponent } from './components/register/register.component';
 
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
