@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { map } from 'rxjs/operators';
-import { pipe } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +19,15 @@ export class LoginComponent implements OnInit {
   email: FormControl;
   password: FormControl;
   
+  user: User;
 
-  constructor(public authService: AuthService) { }
+  constructor(private authService: AuthService) { 
+    this.authService.user.subscribe( u => {
+        this.user = u;
+    });
+  }
 
   ngOnInit(): void {
-
     this.email = new FormControl("", [Validators.required]);
     this.password = new FormControl("", [Validators.required]);
 
@@ -30,7 +35,6 @@ export class LoginComponent implements OnInit {
       'email': this.email,
       'password': this.password
     });
-
   }
 
   login(): void {
