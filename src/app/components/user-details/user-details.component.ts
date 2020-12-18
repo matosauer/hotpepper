@@ -43,7 +43,8 @@ export class UserDetailsComponent implements OnInit {
     .then(value => {
       this.errorMessage = "";
       this.successMessage = "You have successfully updated the name.";
-      this.edit = false;
+      //this.edit = false;
+      window.location.reload(); //force entiire page to reload
     })
     .catch(err => {
       this.errorMessage = err.message;

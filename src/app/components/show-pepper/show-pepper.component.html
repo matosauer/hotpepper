@@ -1,6 +1,6 @@
 <ng-container *ngIf="hotpepper">
 
-  <div class="container">
+  <div class="container mb-4">
     <p>
         <img src="{{ hotpepper.image }}" alt="{{ hotpepper.title }}">
     </p>
@@ -11,38 +11,30 @@
       {{ hotpepper.description }}
     </p>
     <button *ngIf="authService.user | async" type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
+    &nbsp;
     <button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
   </div>
 
   <div class="container">
-      <div class="panel-group">
 
-      
-        <div class="panel panel-info">
-          <div class="panel-heading">Panel with panel-info class</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-
-        <div class="panel panel-info">
-          <div class="panel-heading">Panel with panel-info class</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-
-        <div class="panel panel-info">
-          <div class="panel-heading">Panel with panel-info class</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-
-        <div class="panel panel-info">
-          <div class="panel-heading">Panel with panel-info class</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-
-        <div class="panel panel-info">
-          <div class="panel-heading">Panel with panel-info class</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
+    <div class="alert alert-info">
+      <span class="glyphicon glyphicon-info-sign"></span> 
+          <strong>Info Message</strong>
+      <hr class="message-inner-separator">
+      <p>
+          This alert needs your attention, but it's not super important.
+      </p>
     </div>
+
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-record"></span> 
+            <strong>Warning Message</strong>
+        <hr class="message-inner-separator">
+        <p>
+            Best check yo self, you're not looking too good.
+        </p>
+    </div>
+    
   </div>
   
   </ng-container>

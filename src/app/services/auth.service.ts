@@ -44,16 +44,12 @@ export class AuthService {
   }
 
   logout(): Promise<any> {
-    return this.firebaseAuth.signOut()
-          .then( d => {
-            this.user = of(null);
-            }
-          );
+    return this.firebaseAuth.signOut();
   }
 
-  update(userId : string, name : string): Promise<any> {
+  update(userId : string, _name : string): Promise<any> {
     return this.db.collection('users').doc(userId)
-                  .set({name: name});
+                  .set({name: _name});
   }
 
   private getDetails(user : firebase.User) : Observable<User>{
