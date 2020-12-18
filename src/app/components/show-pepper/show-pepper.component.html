@@ -1,4 +1,6 @@
-<div *ngIf="hotpepper">
+<ng-container *ngIf="hotpepper">
+
+  <div class="container">
     <p>
         <img src="{{ hotpepper.image }}" alt="{{ hotpepper.title }}">
     </p>
@@ -10,4 +12,39 @@
     </p>
     <button *ngIf="authService.user | async" type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
     <button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
-</div>
+  </div>
+
+  <div class="container">
+      <div class="panel-group">
+
+      
+        <div class="panel panel-info">
+          <div class="panel-heading">Panel with panel-info class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">Panel with panel-info class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">Panel with panel-info class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">Panel with panel-info class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">Panel with panel-info class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+    </div>
+  </div>
+  
+  </ng-container>
+
+

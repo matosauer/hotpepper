@@ -23,6 +23,8 @@ import { ShowPepperComponent } from './components/show-pepper/show-pepper.compon
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminGuardService } from './services/admin-guard.service';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { BoardComponent } from './components/board/board.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AdminGuardService } from './services/admin-guard.service';
     P404Component,
     EditPepperComponent,
     ShowPepperComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserDetailsComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,

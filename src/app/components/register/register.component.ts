@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  user: User;
+
   errorMessage:string;
   successMessage: string;
 
@@ -17,7 +20,11 @@ export class RegisterComponent implements OnInit {
   password: FormControl;
   name: FormControl;
 
-  constructor(public authService: AuthService) { }
+  constructor(private authService: AuthService) { 
+    this.authService.user.subscribe(u => {
+        this.user = u;
+      });
+  }
 
   ngOnInit(): void {
     this.email = new FormControl("", [Validators.required]);

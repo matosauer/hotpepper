@@ -1,3 +1,5 @@
+import { BoardComponent } from './components/board/board.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShowPepperComponent } from './components/show-pepper/show-pepper.component';
 import { EditPepperComponent } from './components/edit-pepper/edit-pepper.component';
@@ -12,7 +14,7 @@ import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth
 import { AdminGuardService } from './services/admin-guard.service';
 
 
-// const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
@@ -23,11 +25,14 @@ const routes: Routes = [
   // {path:'edit/pepper', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   // {path:'edit/pepper/:id', component: EditPepperComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
 
+  {path:'board', component: BoardComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+
   {path:'edit/peppers', component: EditPepperComponent, canActivate: [AdminGuardService]},
   {path:'edit/peppers/:id', component: EditPepperComponent, canActivate: [AdminGuardService]},
 
   {path:'user/login', component: LoginComponent},
   {path:'user/register', component: RegisterComponent},
+  {path:'user/details', component: UserDetailsComponent},
 
   {path:'', component: HomeComponent, pathMatch: 'full'},
   

@@ -24,3 +24,7 @@
   </div>
 
 </div>
+
+<ng-container *ngIf="!(hotpeppers$ | async)">
+  <div>Loading...</div>
+</ng-container>
